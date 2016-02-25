@@ -7,7 +7,7 @@ export default class Controller {
         _.forEach(this.groundRoutes, (routeValue, routeKey) => {
             const routeObject = _.extend({}, routeValue, {route: routeKey});
 
-            const routeHandler = ((routeObject) => {
+            const routeHandler = (routeObject => {
                 return () => this.routeHandlerFactory.createHandler(routeObject);
             })(routeObject);
 
