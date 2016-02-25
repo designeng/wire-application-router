@@ -1,30 +1,30 @@
-import routeStrategy            from './default/routeStrategy'
-import prepareBehavior          from './default/prepareBehavior'
-import behaviorProcessor        from './default/behaviorProcessor'
-import accessPolicyProcessor    from './default/accessPolicyProcessor'
-import hasherInitializator      from './default/hasherInitializator'
-import contextController        from './default/contextController'
-import childContextProcessor    from './default/childContextProcessor'
-import environment              from './default/environment'
-import routeHandlerFactory      from './default/routeHandlerFactory'
-import controller               from './default/controller'
+import routeStrategy            from './routeStrategy'
+import prepareBehavior          from './prepareBehavior'
+import behaviorProcessor        from './behaviorProcessor'
+import accessPolicyProcessor    from './accessPolicyProcessor'
+import hasherInitializator      from './hasherInitializator'
+import contextController        from './contextController'
+import childContextProcessor    from './childContextProcessor'
+import environment              from './environment'
+import routeHandlerFactory      from './routeHandlerFactory'
+import controller               from './controller'
 
 export default {
     $plugins:[
-        'wire/debug'
+        'wire/debug',
         'wire/aop'
     ],
 
     // noops:
     appRouterController: {
-        parse: => {}
+        parse: () => {}
     },
     groundRoutes: {},
     childRoutes: {},
     pluginWireFn: {
         module: "wire"
     },
-    afterChildrenLoaded: => {},
+    afterChildrenLoaded: () => {},
     // / noops
 
     // provided properties: [groundRoutes, childRoutes, pluginWireFn, appRouterController]
@@ -66,7 +66,7 @@ export default {
     },
 
     contextController: {
-        create: contextController
+        create: contextController,
         properties: {
             routeStrategy               : {$ref: 'routeStrategy'}
         }
@@ -108,7 +108,7 @@ export default {
         }
     },
 
-    controller:
+    controller: {
         create: controller,
         properties: {
             groundRoutes                : {$ref: 'groundRoutes'},
@@ -120,4 +120,5 @@ export default {
         ready: {
             registerGroundRoutes: {}
         }
+    }
 }

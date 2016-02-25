@@ -5,6 +5,8 @@ import when from 'when';
 import wire                 from 'essential-wire';
 import wireDebugPlugin      from 'essential-wire/source/debug';
 
+import wireRoutingSystemPlugin from '../../src/index';
+
 chai.use(spies);
 
 describe('root ......',  () => {
@@ -14,7 +16,8 @@ describe('root ......',  () => {
     const before = (done) => {
         wire({
             $plugins: [
-                wireDebugPlugin
+                wireDebugPlugin,
+                wireRoutingSystemPlugin
             ],
             test: 123
         })
