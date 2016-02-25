@@ -24,6 +24,6 @@ class AppRouterController {
     }
 }
 
-appRouterController = appRouterController ? new AppRouterController() : appRouterController;
+appRouterController = typeof(appRouterController) === 'undefined' ? new AppRouterController() : appRouterController;
 
 export default appRouterController;

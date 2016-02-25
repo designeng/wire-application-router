@@ -14,11 +14,20 @@ describe('root ......',  () => {
     let root = {};
 
     const groundRoutes = {
-
+        "{plain}" : {
+            spec: "specs/prospect/plain/spec",
+            slot: {$ref: "dom.first!#prospect"},
+            rules: {
+                plain: /\bcontacts\b/i
+            }
+        }
     }
 
     const childRoutes = {
-        
+        "contacts"  : {
+            spec: "components/contacts/spec",
+            slot: {$ref: "dom.first!#page"}
+        }
     }
 
     const before = (done) => {
@@ -44,11 +53,11 @@ describe('root ......',  () => {
                 }
             }
         })
-        .then((context) => {
+        .then(context => {
             root = context;
             done();
         })
-        .otherwise((error) => console.log("ERROR::::", error))
+        .otherwise(error => console.log("ERROR::::", error))
     }
 
     beforeEach(before);
