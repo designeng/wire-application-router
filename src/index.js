@@ -6,7 +6,7 @@ const appRouterFactory = (resolver, compDef, wire) => {
     const essentialObjects = ["groundRoutes", "childRoutes"];
     essentialObjects.forEach(opt => {
         let option = compDef.options[opt];
-        if (typeof(option) === 'undefined' || option === null){
+        if (typeof(option) === 'undefined' || option === null) {
             throw new Error("${opt} option should be provided for appRouter plugin usage!");
         }
         if (!_.isObject(option)){
@@ -16,14 +16,13 @@ const appRouterFactory = (resolver, compDef, wire) => {
 
     wire({
         appRouterController: {
-            literal: appRouterController
+            create: appRouterController
         },
         root: {
             wire: {
                 spec: pluginSpec,
                 provide: {
                     pluginWireFn           : wire,
-                    appRouterController    : {$ref: 'appRouterController'},
                     groundRoutes           : compDef.options.groundRoutes,
                     childRoutes            : compDef.options.childRoutes,
                     afterChildrenLoaded    : compDef.options.afterChildrenLoaded
