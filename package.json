@@ -18,8 +18,9 @@
   },
   "homepage": "https://github.com/designeng/wire-routing-system",
   "dependencies": {
-    "essential-wire": "git://github.com/designeng/essential-wire",
     "crossroads": "^0.12.2",
+    "essential-wire": "git://github.com/designeng/essential-wire",
+    "hasher": "^1.2.0",
     "history": "^2.0.0",
     "underscore": "^1.8.3"
   },

@@ -1,4 +1,4 @@
-import hasher from 'history';
+import hasher from 'hasher';
 import navigate from '../utils/navigation/navigate';
 
 export default class HasherInitializator {
