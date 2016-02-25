@@ -14,7 +14,7 @@ export default class TasksFactory {
     }
 
     prepareTasks(tasks) {
-        distributive = {};
+        let distributive = {};
         distributive['tasks'] = tasks;
         return distributive;
     }
