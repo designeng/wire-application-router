@@ -1,6 +1,6 @@
 import hasher from 'hasher';
 
-export default const navigate = (route, mode, tail) => {
+export const navigate = (route, mode, tail) => {
     if (!mode) {
         return hasher.setHash(route);
     } else if (mode === "add" && tail) {

@@ -1,5 +1,5 @@
 import _ from 'underscore';
-import Collection from '../../../utils/collection';
+import Collection from '../utils/collection';
 
 // TODO: merge with contextHashController?
 
@@ -43,8 +43,8 @@ export default class ContextController {
         const types = ["child", "parent"];
         _.each(types, (type) => {
             context = this.getRegistredContext(route, type);
-            context?.destroy();
-        }
+            context ? context.destroy() : void 0;
+        });
         _contextHash.reset();
     }
 
@@ -123,7 +123,7 @@ export default class ContextController {
     }
 
     normalizeRoute(route) {
-        return (_.isArray(route) ? route : (_.isString(route) ? route.split "/" : void 0));
+        return (_.isArray(route) ? route : (_.isString(route) ? route.split("/") : void 0));
     }
 
     validate(emphasizedPositions, positions) {

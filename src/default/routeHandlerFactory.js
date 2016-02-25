@@ -1,7 +1,7 @@
 import _ from 'underscore';
 import when from 'when';
-import navigateToError from './utils/navigation/navigateToError';
 import TasksFactory from './tasksFactory';
+import navigateToError from '../utils/navigation/navigateToError';
 
 export default class RouteHandlerFactory {
 

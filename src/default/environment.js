@@ -62,7 +62,7 @@ export default class Environment {
                     parentContext.wire(modulesResult).then(next);
                 }
             },
-            reason => console.debug('Environment::loadInEnvironment reject reason:', reason);
+            reason => console.debug('Environment::loadInEnvironment reject reason:', reason)
         );
     }
 }

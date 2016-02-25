@@ -1,7 +1,7 @@
-import navigate from '../utils/navigate'
+import navigate from '../utils/navigation/navigate'
 
 export default class AccessPolicyProcessor {
-    askForAccess:(childContext) {
+    askForAccess(childContext) {
         const accessPolicy = childContext.accessPolicy;
         if(typeof(accessPolicy) !== 'undefined') {
             let access = accessPolicy.checkAccess();

@@ -3,7 +3,7 @@ import when from 'when';
 import pipeline from 'when/pipeline';
 import sequence from 'when/sequence';
 import TasksFactory from './tasksFactory';
-import navigate from '../utils/navigate';
+import navigate from '../utils/navigation/navigate';
 
 export default class ChildContextProcessor {
 

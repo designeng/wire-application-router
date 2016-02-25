@@ -3,7 +3,7 @@ import when from 'when';
 import sequence from 'when/sequence';
 
 export default class BehaviorProcessor {
-    sequenceBehavior:(childContext) {
+    sequenceBehavior(childContext) {
         return when(this.pluginWireFn.getProxy(childContext.behavior)
                 , (behaviorObject) => {
                     let tasks = behaviorObject.target;
@@ -20,7 +20,7 @@ export default class BehaviorProcessor {
                 }
         ).then( 
             ()      => childContext,
-            error   => console.error('BehaviorProcessor::sequenceBehavior ERROR:', error.stack);
+            error   => console.error('BehaviorProcessor::sequenceBehavior ERROR:', error.stack)
         );
     }
 }

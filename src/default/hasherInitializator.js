@@ -1,5 +1,5 @@
-import hasher from 'hasher';
-import navigate from '../utils/navigate';
+import hasher from 'history';
+import navigate from '../utils/navigation/navigate';
 
 export default class HasherInitializator {
 
