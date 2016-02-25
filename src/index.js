@@ -16,7 +16,7 @@ const appRouterFactory = (resolver, compDef, wire) => {
 
     wire({
         appRouterController: {
-            create: appRouterController
+            create: compDef.options.appRouterController || appRouterController
         },
         root: {
             wire: {

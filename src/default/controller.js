@@ -5,6 +5,7 @@ import Route from './route';
 export default class Controller {
     registerGroundRoutes() {
         _.forEach(this.groundRoutes, (routeValue, routeKey) => {
+
             const routeObject = _.extend({}, routeValue, {route: routeKey});
 
             const routeHandler = (routeObject => {

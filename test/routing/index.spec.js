@@ -5,7 +5,8 @@ import when from 'when';
 import wire                 from 'essential-wire';
 import wireDebugPlugin      from 'essential-wire/source/debug';
 
-import wireRoutingSystemPlugin from '../../src/index';
+import wireRoutingSystemPlugin  from '../../src/index';
+import appRouterController      from '../../src/appRouterController';
 
 chai.use(spies);
 
@@ -50,7 +51,8 @@ describe('root ......',  () => {
             router: {
                 appRouter: {
                     groundRoutes: {$ref: 'groundRoutes'},
-                    childRoutes: {$ref: 'childRoutes'}
+                    childRoutes: {$ref: 'childRoutes'},
+                    appRouterController: appRouterController
                 }
             }
         })
@@ -64,8 +66,10 @@ describe('root ......',  () => {
     beforeEach(before);
 
     it('should.............',  (done) => {
+        console.log("appRouterController::::", appRouterController);
+        // expect(appRouterController.match('/foo/')).to.be.ok;
         expect(root.test).to.be.ok;
-        expect(root.test).to.equal(123);
+        // expect(root.test).to.equal(123);
         done();
     });
 
