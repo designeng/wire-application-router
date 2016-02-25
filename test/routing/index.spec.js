@@ -12,7 +12,7 @@ chai.use(spies);
 
 describe('root ......',  () => {
 
-    let root = {};
+    let rootContext = {};
 
     const groundRoutes = {
         "{plain}" : {
@@ -57,7 +57,7 @@ describe('root ......',  () => {
             }
         })
         .then(context => {
-            root = context;
+            rootContext = context;
             done();
         })
         .otherwise(error => console.log("ERROR::::", error))
@@ -66,10 +66,10 @@ describe('root ......',  () => {
     beforeEach(before);
 
     it('should.............',  (done) => {
-        console.log("appRouterController::::", appRouterController);
-        // expect(appRouterController.match('/foo/')).to.be.ok;
-        expect(root.test).to.be.ok;
-        // expect(root.test).to.equal(123);
+        let routes = rootContext.router.root.controller.__routes__;
+        expect(routes.length).to.equal(1);
+
+        // expect(routes[0].match('/plain')).to.be.ok;
         done();
     });
 

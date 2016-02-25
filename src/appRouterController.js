@@ -6,7 +6,7 @@ let appRouterController;
 class AppRouterController {
 
     constructor() {
-        const router = crossroads.create();
+        let router = crossroads.create();
 
         router.bypassed.add((route) => { 
             navigateToError("404", "The page with route #{route} you tried to access does not exist");

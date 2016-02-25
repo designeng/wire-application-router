@@ -4,6 +4,7 @@ import Route from './route';
 
 export default class Controller {
     registerGroundRoutes() {
+        this.__routes__ = [];
         _.forEach(this.groundRoutes, (routeValue, routeKey) => {
 
             const routeObject = _.extend({}, routeValue, {route: routeKey});
@@ -13,7 +14,7 @@ export default class Controller {
             })(routeObject);
 
             // register route
-            new Route(routeKey, routeValue.rules, routeHandler);
+            this.__routes__.push(new Route(routeKey, routeValue.rules, routeHandler));
         });
     }
 }
