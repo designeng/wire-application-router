@@ -36,6 +36,7 @@ describe('root ......',  () => {
                 wireDebugPlugin,
                 wireRoutingSystemPlugin
             ],
+
             test: 123,
 
             groundRoutes: {

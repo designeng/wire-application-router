@@ -18,18 +18,6 @@ export default {
         wireAopPlugin
     ],
 
-    // noops:
-    appRouterController: {
-        parse: () => {}
-    },
-    groundRoutes: {},
-    childRoutes: {},
-    pluginWireFn: {
-        module: "wire"
-    },
-    afterChildrenLoaded: () => {},
-    // / noops
-
     // provided properties: [groundRoutes, childRoutes, pluginWireFn, appRouterController]
 
     routeStrategy: {
