@@ -1,4 +1,4 @@
-import hasher from 'hasher';
+import hasher from 'history';
 
 export const navigate = (route, mode, tail) => {
     if (!mode) {
