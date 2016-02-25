@@ -77,7 +77,7 @@ export default class RouteStrategy {
 
     getBaseRoute(route) {
         // memoize childRoutes groups by fragment length
-        if !memoGroupedByLength?
+        if(typeof memoGroupedByLength === "undefined" || memoGroupedByLength === null) {
             const keys    = _.keys(this.childRoutes);
             memoGroupedByLength = _.reduce(keys, (result, item, index) => {
                 const fragmentsLength = getRouteFragments(item).length;
@@ -97,6 +97,7 @@ export default class RouteStrategy {
                 result[fragmentsLength].push(element);
                 return result;
             }, {});
+        }
             
         const fragments = getRouteFragments(route);
         const baseRoute = getBaseRouteRecursive(route, fragments, fragments.length);
@@ -104,7 +105,7 @@ export default class RouteStrategy {
     }
 
     getChild(route) {
-        const routeParams = getCurrentRoute.call(this.).params;
+        const routeParams = getCurrentRoute.call(this).params;
         const childRoutesKeys = _.keys(this.childRoutes);
 
         childRoutesKeys.forEach( routeKey => {

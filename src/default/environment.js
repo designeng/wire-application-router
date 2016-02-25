@@ -37,9 +37,9 @@ export default class Environment {
         object = _.extend(object, environment)
         if(typeof(environment.behavior != 'undefined')) {
             if(!object.$plugins) {
-                object.$plugins = []
-            },
-            object.$plugins.push('core/plugin/behavior')
+                object.$plugins = [];
+            }
+            object.$plugins.push('core/plugin/behavior');
         }
         return object
     }

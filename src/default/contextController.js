@@ -31,7 +31,7 @@ export default class ContextController {
         // first get base route for the current route
         const baseRoute = this.routeStrategy.getBaseRoute(child.route);
 
-        const hash = child.params?["input"];
+        const hash = child.params ? child.params["input"] : void 0;
 
         // parent context and child context can be cached in different route keys
         this.updateCachedItem(baseRoute, { parentContext, hash });

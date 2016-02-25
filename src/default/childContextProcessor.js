@@ -92,7 +92,7 @@ export default class ChildContextProcessor {
                             return childContext;
                         }, 
                         rejectReason => {
-                            console.debug "ChildContextProcessor::wireChildContext:rejectReason:", rejectReason
+                            console.debug("ChildContextProcessor::wireChildContext:rejectReason:", rejectReason);
                         }
                     );
             }

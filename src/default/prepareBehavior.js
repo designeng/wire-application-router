@@ -1,6 +1,6 @@
 import _ from 'underscore';
 
-export default const prepareBehavior = (behavior) => {
+export const prepareBehavior = (behavior) => {
     if (_.isArray(behavior)) {
         const length = behavior.length;
         const behaviorRef = _.reduce(behavior, (result, item, index) => {
