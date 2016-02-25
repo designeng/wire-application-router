@@ -6,7 +6,6 @@ import navigateToError from '../utils/navigation/navigateToError';
 export default class RouteHandlerFactory {
 
     constructor() {
-        // _.bindAll @
         const tasks = [
             'defineChildObject',
             'getCached',

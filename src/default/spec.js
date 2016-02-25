@@ -1,18 +1,21 @@
-import routeStrategy            from './routeStrategy'
-import prepareBehavior          from './prepareBehavior'
-import behaviorProcessor        from './behaviorProcessor'
-import accessPolicyProcessor    from './accessPolicyProcessor'
-import hasherInitializator      from './hasherInitializator'
-import contextController        from './contextController'
-import childContextProcessor    from './childContextProcessor'
-import environment              from './environment'
-import routeHandlerFactory      from './routeHandlerFactory'
-import controller               from './controller'
+import wireDebugPlugin          from 'essential-wire/source/debug';
+import wireAopPlugin            from 'essential-wire/source/aop';
+
+import routeStrategy            from './routeStrategy';
+import prepareBehavior          from './prepareBehavior';
+import behaviorProcessor        from './behaviorProcessor';
+import accessPolicyProcessor    from './accessPolicyProcessor';
+import hasherInitializator      from './hasherInitializator';
+import contextController        from './contextController';
+import childContextProcessor    from './childContextProcessor';
+import environment              from './environment';
+import routeHandlerFactory      from './routeHandlerFactory';
+import controller               from './controller';
 
 export default {
     $plugins:[
-        'wire/debug',
-        'wire/aop'
+        wireDebugPlugin,
+        wireAopPlugin
     ],
 
     // noops:
@@ -30,7 +33,10 @@ export default {
     // provided properties: [groundRoutes, childRoutes, pluginWireFn, appRouterController]
 
     routeStrategy: {
-        create: routeStrategy,
+        create: {
+            module: routeStrategy,
+            isConstructor: true
+        },
         properties: {
             appRouterController         : {$ref: 'appRouterController'},
             childRoutes                 : {$ref: 'childRoutes'}
@@ -42,21 +48,30 @@ export default {
     },
 
     behaviorProcessor: {
-        create: behaviorProcessor,
+        create: {
+            module: behaviorProcessor,
+            isConstructor: true
+        },
         properties: {
             pluginWireFn                : {$ref: 'pluginWireFn'}
         }
     },
 
     accessPolicyProcessor: {
-        create: accessPolicyProcessor,
+        create: {
+            module: accessPolicyProcessor,
+            isConstructor: true
+        },
         properties: {
             pluginWireFn                : {$ref: 'pluginWireFn'}
         }
     },
 
     hasherInitializator: {
-        create: hasherInitializator,
+        create: {
+            module: hasherInitializator,
+            isConstructor: true
+        },
         properties: {
             appRouterController         : {$ref: 'appRouterController'}
         },
@@ -66,14 +81,20 @@ export default {
     },
 
     contextController: {
-        create: contextController,
+        create: {
+            module: contextController,
+            isConstructor: true
+        },
         properties: {
             routeStrategy               : {$ref: 'routeStrategy'}
         }
     },
 
     childContextProcessor: {
-        create: childContextProcessor,
+        create: {
+            module: childContextProcessor,
+            isConstructor: true
+        },
         properties: {
             appRouterController         : {$ref: 'appRouterController'},
             routeStrategy               : {$ref: 'routeStrategy'},
@@ -89,14 +110,20 @@ export default {
     },
 
     environment: {
-        create: environment,
+        create: {
+            module: environment,
+            isConstructor: true
+        },
         properties: {
             pluginWireFn                : {$ref: 'pluginWireFn'}
         }
     },
 
     routeHandlerFactory: {
-        create: routeHandlerFactory,
+        create: {
+            module: routeHandlerFactory,
+            isConstructor: true
+        },
         properties: {
             contextController           : {$ref: 'contextController'},
             routeStrategy               : {$ref: 'routeStrategy'},
@@ -109,7 +136,10 @@ export default {
     },
 
     controller: {
-        create: controller,
+        create: {
+            module: controller,
+            isConstructor: true
+        },
         properties: {
             groundRoutes                : {$ref: 'groundRoutes'},
             routeHandlerFactory         : {$ref: 'routeHandlerFactory'}

@@ -11,7 +11,6 @@ export default class ChildContextProcessor {
     // parentContext: undefined
 
     constructor() {
-        _.bindAll(this);
         const tasks = [
             "wireChildContext",
             "checkForAccess",

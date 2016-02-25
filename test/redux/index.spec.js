@@ -13,13 +13,36 @@ describe('root ......',  () => {
 
     let root = {};
 
+    const groundRoutes = {
+
+    }
+
+    const childRoutes = {
+        
+    }
+
     const before = (done) => {
         wire({
             $plugins: [
                 wireDebugPlugin,
                 wireRoutingSystemPlugin
             ],
-            test: 123
+            test: 123,
+
+            groundRoutes: {
+                module: groundRoutes
+            },
+
+            childRoutes: {
+                module: childRoutes
+            },
+
+            router: {
+                appRouter: {
+                    groundRoutes: {$ref: 'groundRoutes'},
+                    childRoutes: {$ref: 'childRoutes'}
+                }
+            }
         })
         .then((context) => {
             root = context;
