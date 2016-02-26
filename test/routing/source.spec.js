@@ -59,11 +59,6 @@ describe('TasksRunner',  () => {
         done();
     });
 
-    xit('should skip tasks pointed as skipped',  (done) => {
-        expect(skippedTaskSpy).to.not.have.been.called;
-        done();
-    });
-
     it('should run tasks in pipeline',  (done) => {
         runner.run().then(result => {
             expect(result).to.equal(3);

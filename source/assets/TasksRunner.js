@@ -8,7 +8,8 @@ export default function TasksRunner(target, tasks, options) {
 
     if (skip) {
         this.tasks = _.filter(this.tasks, (methodToSkip, index) => {
-            return (indexOf.call(options.skip, index) >= 0) ? false : true;
+            console.log("methodToSkip, index:::", methodToSkip, index);
+            return (Array.prototype.indexOf.call(options.skip, index) >= 0) ? false : true;
         });
     }
 
