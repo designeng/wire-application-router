@@ -36,15 +36,13 @@ export default class ChildContextProcessor {
         // waiting while tasks for first item will be completed.
         const childQueue = _.map(bundle, (item, index) => {
             return () => {
-                let options = {}
                 item.childContext = this.contextController.getRegistredContext(item.route, "child");
                 this.mainSpecification = index == 0 ? item.spec : null;
 
                 if(typeof(item.childContext) !== 'undefined') {
                     // should be skipped "wireChildContext", "checkForAccess" tasks - pass the array of indexes:
-                    options.skip = [0, 1]
                     // as sequenceBehavior has childContext in argument, item.childContext should be passed
-                    this.tasksFactory.runTasks(item.childContext, null, options);
+                    this.tasksFactory.runTasks(item.childContext, null, {skip: [0, 1]});
                 } else {
                     this.tasksFactory.runTasks(item);
                 }

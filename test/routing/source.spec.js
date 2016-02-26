@@ -2,74 +2,49 @@ import chai, { expect } from 'chai';
 import spies from 'chai-spies';
 import when from 'when';
 
-import wire                 from 'essential-wire';
-import wireDebugPlugin      from 'essential-wire/source/debug';
-
-import wireRoutingSystemPlugin  from '../../src/index';
-import appRouterController      from '../../src/appRouterController';
+import TasksRunner from '../../source/assets/TasksRunner';
 
 chai.use(spies);
 
-describe('root ......',  () => {
+class TasksDistributive {
 
-    let rootContext = {};
-
-    const groundRoutes = {
-        "{plain}" : {
-            spec: "specs/prospect/plain/spec",
-            slot: {$ref: "dom.first!#prospect"},
-            rules: {
-                plain: /\bcontacts\b/i
-            }
-        }
+    constructor(options) {
+        this.testProp = options.testProp;
     }
 
-    const childRoutes = {
-        "contacts"  : {
-            spec: "components/contacts/spec",
-            slot: {$ref: "dom.first!#page"}
-        }
+    oneTask() {
+        return this.testProp;
     }
+
+    twoTask() {
+
+    }
+}
+
+describe('TasksRunner',  () => {
+
+    let runner, target;
 
     const before = (done) => {
-        wire({
-            $plugins: [
-                wireDebugPlugin,
-                wireRoutingSystemPlugin
-            ],
-
-            test: 123,
-
-            groundRoutes: {
-                module: groundRoutes
-            },
-
-            childRoutes: {
-                module: childRoutes
-            },
-
-            router: {
-                appRouter: {
-                    groundRoutes: {$ref: 'groundRoutes'},
-                    childRoutes: {$ref: 'childRoutes'},
-                    appRouterController: appRouterController
-                }
-            }
-        })
-        .then(context => {
-            rootContext = context;
-            done();
-        })
-        .otherwise(error => console.log("ERROR::::", error))
+        target = new TasksDistributive({testProp: 1});
+        runner = new TasksRunner(target, ['oneTask', 'twoTask', () => {} ]);
+        done();
     }
 
     beforeEach(before);
 
-    it('should.............',  (done) => {
-        let routes = rootContext.router.root.controller.__routes__;
-        expect(routes.length).to.equal(1);
+    it('should have tasks array with length',  (done) => {
+        expect(runner.tasks.length).to.equal(3);
+        done();
+    });
 
-        // expect(routes[0].match('/plain')).to.be.ok;
+    it('should convert string task to function',  (done) => {
+        expect(runner.tasks[0]).to.be.a('function');
+        done();
+    });
+
+    it('should bind converted task to target',  (done) => {
+        expect(runner.tasks[0]()).to.equal(1);
         done();
     });
 
