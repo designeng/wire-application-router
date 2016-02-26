@@ -53,6 +53,7 @@ export default class RouteStrategy {
     constructor(options) {
         if(typeof(options) !== 'undefined') {
             this.childRoutes  = options.childRoutes;
+            // TODO: remove?
             this.groundRoutes = options.groundRoutes;
         }
     }

@@ -10,7 +10,7 @@ import appRouterController      from '../../src/appRouterController';
 
 chai.use(spies);
 
-xdescribe('root ......',  () => {
+describe('root ......',  () => {
 
     let rootContext = {};
 

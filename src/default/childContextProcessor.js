@@ -7,10 +7,8 @@ import navigate from '../utils/navigation/navigate';
 
 export default class ChildContextProcessor {
 
-    // should be defined in "deliver" method
-    // parentContext: undefined
-
     constructor() {
+        this.parentContext = null;
         const tasks = [
             "wireChildContext",
             "checkForAccess",
