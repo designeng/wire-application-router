@@ -34,11 +34,13 @@ export default class TasksFactory {
     }
 
     runTasks(item, callback, options) {
+        let skip;
+        
         if (!_.isFunction(callback)) {
             callback = invariant;
         }
 
-        if (options != null ? options.skip : void 0) {
+        if (skip = (options != null ? options.skip : void 0)) {
             tasks = _.filter(this.distributive["tasks"], function(methodToSkip, index) {
                 return (indexOf.call(options.skip, index) >= 0) ? false : true;
             });

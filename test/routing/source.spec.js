@@ -6,6 +6,8 @@ import TasksRunner from '../../source/assets/TasksRunner';
 
 chai.use(spies);
 
+const skippedTaskSpy = chai.spy();
+
 class TasksDistributive {
 
     constructor(options) {
@@ -16,8 +18,17 @@ class TasksDistributive {
         return this.testProp;
     }
 
-    twoTask() {
+    twoTask(a) {
+        return a + 1;
+    }
 
+    threeTask(a) {
+        return a + 1;
+    }
+
+    skippedTask(a) {
+        skippedTaskSpy();
+        return a + 10;
     }
 }
 
@@ -27,14 +38,14 @@ describe('TasksRunner',  () => {
 
     const before = (done) => {
         target = new TasksDistributive({testProp: 1});
-        runner = new TasksRunner(target, ['oneTask', 'twoTask', () => {} ]);
+        runner = new TasksRunner(target, ['oneTask', 'twoTask', 'threeTask', (x) => x ]);
         done();
     }
 
     beforeEach(before);
 
     it('should have tasks array with length',  (done) => {
-        expect(runner.tasks.length).to.equal(3);
+        expect(runner.tasks.length).to.equal(4);
         done();
     });
 
@@ -46,6 +57,18 @@ describe('TasksRunner',  () => {
     it('should bind converted task to target',  (done) => {
         expect(runner.tasks[0]()).to.equal(1);
         done();
+    });
+
+    xit('should skip tasks pointed as skipped',  (done) => {
+        expect(skippedTaskSpy).to.not.have.been.called;
+        done();
+    });
+
+    it('should run tasks in pipeline',  (done) => {
+        runner.run().then(result => {
+            expect(result).to.equal(3);
+            done();
+        })
     });
 
 });
